@@ -7,8 +7,8 @@
 .welcome{text-align:center;margin:10px;font-weight:bold;font-size:14px;color:white;margin-top:18px;}
 .form{text-align:center;margin:10px;border-radius:5px;}
 .homewelcome .address {border:solid 0px red;box-shadow:0px 0px 8px #bf4e02;width:200px;padding:10px;border-radius:10px;text-align:center;margin:10px;}
-.homewelcome .button {margin-bottom:15px !important;font-weight:bold;color:#fc7005;margin:10px;border-radius:10px;background:#fff;border:solid 1px #fc7005;padding:5px;padding-left:10px;padding-right:10px;}
-.homewelcome .button:hover{background:#bf4e02;border:solid 1px #bf4e02;color:#fff}
+.homewelcome .button {margin-bottom:15px !important;font-weight:bold;color:#fc7005;margin:10px;border-radius:10px;background:#fff;border:solid 0px #fc7005;padding:5px;padding-left:10px;padding-right:10px;}
+.homewelcome .button:hover{background:#bf4e02;border:solid 0px #bf4e;color:#fff}
 .howto{background:#fff !important;padding:10px;margin:10px;box-shadow:0px 0px 7px #b5b5b5;border-radius:8px;}
 .howto h2{text-align:center;font-size:16px;}
 	.demo {
