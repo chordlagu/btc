@@ -2,4 +2,4 @@
 .welcome{text-align:center;margin:10px;}
 .form{text-align:center;margin:10px;border-radius:5px;}
 .homewelcome .address {padding:10px;border-radius:5px;border:solid 2px silver;text-align:center;margin:10px;}
-.homewelcome .button {margin:10px;border-radius:5px;background:orange;border:solid 1px orange;padding:5px;}
+.homewelcome .button {margin:10px;border-radius:5px;background:orange;border:solid 1px orange;padding:5px;box-shadow:0px 0px 5px #b5b5b5;}
