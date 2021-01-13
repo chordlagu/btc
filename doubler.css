@@ -1,4 +1,4 @@
-.homewelcome{margin-bottom:15px;background:#fc7005;margin:10px;box-shadow:0px 0px 7px #b5b5b5;border-radius:8px;padding:5px;}
+.homewelcome{margin-bottom:15px !important;background:#fc7005;margin:10px;box-shadow:0px 0px 7px #b5b5b5;border-radius:8px;padding:5px;}
 .welcome{text-align:center;margin:10px;font-weight:bold;font-size:14px;color:white;margin-top:18px;}
 .form{text-align:center;margin:10px;border-radius:5px;}
 .homewelcome .address {width:200px;padding:10px;border-radius:10px;border:solid 2px #fc7005;text-align:center;margin:10px;}
