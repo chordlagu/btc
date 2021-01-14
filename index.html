@@ -52,15 +52,19 @@
 
 
 
-<div id="randomText"></div>
+<div id="visitor"></div>
 
 
-<script>var texts = [
-  "I am a sentence.",
-  "Some nice stuff.",
-  "I am random too!"
-];
+<script>function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-document.getElementById('randomText').value = texts[Math.floor(Math.random()*texts.length)];</script>
+var ms = 3000;
+var func = function () {
+    var randNum = getRandomInt(354, 490);    // Gets random number between 1 and 253
+    document.getElementById("visitor").innerHTML = randNum;
+};
+
+setInterval(func, ms);</script>
 </body>
 </html>
