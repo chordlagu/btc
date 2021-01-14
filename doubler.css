@@ -1,9 +1,5 @@
-.homewelcome{margin-bottom:20px !important;background: linear-gradient(270deg, #fc7005, #9b4401);
-    background-size: 400% 400%;
-    -webkit-animation: AnimationName 5s ease infinite;
-    -moz-animation: AnimationName 5s ease infinite;
-    -o-animation: AnimationName 5s ease infinite;
-    animation: AnimationName 5s ease infinite;margin:10px;box-shadow:0px 0px 7px #fff;border-radius:8px;padding:5px;}
+.homewelcome{margin-bottom:20px !important;background-image:url(w3css.gif);
+    background-repeat:no-repeat;margin:10px;box-shadow:0px 0px 7px #fff;border-radius:8px;padding:5px;}
 .welcome{text-align:center;margin:10px;font-weight:bold;font-size:14px;color:white;margin-top:18px;}
 .homewelcome .address {border:solid 0px red;box-shadow:0px 0px 8px #bf4e02;width:240px;padding:10px;border-radius:10px;text-align:center;margin:10px;}
 .homewelcome .button {margin-bottom:20px !important;font-weight:bold;color:#fc7005;margin:10px;border-radius:10px;background:#fff;border:solid 0px #fc7005;padding:5px;padding-left:10px;padding-right:10px;}
