@@ -1,6 +1,6 @@
 .homewelcome{margin-bottom:20px !important;background-image:url(/InShot_20210114_191703266.webp);
     background-repeat:no-repeat;background-size: 100%;margin:10px;box-shadow:0px 0px 7px #000;border-radius:8px;padding:5px;}
-.welcome{text-shadow:0px 1px 2px black;text-align:center;margin:10px;font-weight:bold;font-size:14px;color:white;margin-top:18px;}
+.welcome{text-shadow:0px 1px 2px #e8e8e8;text-align:center;margin:10px;font-weight:bold;font-size:14px;color:white;margin-top:18px;}
 .homewelcome .address {border:solid 0px red;box-shadow:0px 0px 8px #000;width:240px;padding:10px;border-radius:10px;text-align:center;margin:10px;}
 .homewelcome .button {margin-bottom:20px !important;font-weight:bold;color:#fc7005;margin:10px;border-radius:10px;background:#fff;border:solid 0px #fc7005;padding:5px;padding-left:10px;padding-right:10px;}
 .homewelcome .button:hover{background:#bf4e02;border:solid 0px #bf4e;color:#fff}
