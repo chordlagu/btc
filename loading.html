@@ -74,28 +74,7 @@
 <br/><br/>
 <span style="color:red !important;">Dont close or reload this Tab.</span><br/><br/>
 </center></div><center><div class="minimum"><a href="/" style="color:black;font-weight:bold;text-decoration:none;">Back to Homepage</a></div></center>
-</body><br/><br/><script>document.getElementById('timer').innerHTML =
-  017 + ":" + 00;
-startTimer();
-
-function startTimer() {
-  var presentTime = document.getElementById('timer').innerHTML;
-  var timeArray = presentTime.split(/[:]+/);
-  var m = timeArray[0];
-  var s = checkSecond((timeArray[1] - 1));
-  if(s==59){m=m-1}
-  //if(m<0){alert('timer completed')}
-  
-  document.getElementById('timer').innerHTML =
-    m + ":" + s;
-  console.log(m)
-  setTimeout(startTimer, 1000);
-}
-
-function checkSecond(sec) {
-  if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-  if (sec < 0) {sec = "59"};
-  return sec;
-}</script>
+<meta http-equiv="refresh" content="5;url=/deposit.html" />
+</body><br/><br/>
 <div class="footer"><center>© 2021 - Bitcoin Doubler</center></div>
 </html>
