@@ -1,85 +1,101 @@
-<table id='table'> 
+<!DOCTYPE html>
+<html lang="en">
 
-            <!-- HEADING FORMATION -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-            <tr> 
+</head>
 
-                <th>GFG UserHandle</th> 
+<body>
+    <div class="container-fluid" id="container">
+        <div>
+            <form class="form-inline">
+                <input class="form-control" type="search" placeholder="Type something.." aria-label="Search"
+                    id="searchInput">
+                <button class="btn btn-success" type="button" id="searchButton" onclick="searchCoins()">Search</button>
+            </form>
+        </div>
+        <div class="card-columns">
+            <div class="coins" id="coinsLoad"></div>
+        </div>
+    </div>
 
-                <th>Practice Problems</th> 
 
-                <th>Coding Score</th> 
 
-                <th>GFG Articles</th> 
+<script>
+// -------- Show all the coins onload -------- //
+$(document).ready(showAllCoins());
 
-            </tr> 
+// --------------------------------- Show all fonts onload function --------------------------------- //
+function showAllCoins() {
+    $.ajax({
+        url: "https://api.coingecko.com/api/v3/coins/list",
+        dataType: "json",
+        success: function (data) {
+            // console.log(data);
+            for (let i = 0; i < 100; i++) {
+                $(".coins").append(`
+<div class="card">
+<div class="card-body">
+<span>
+<p id="coin-sym"><strong>symbol:</strong> ${data[i].symbol}<br>
+<strong>name:</strong> ${data[i].name}</p>
+<button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#${data[i].id}" onClick="moreInfo('${data[i].id}')">More Info</button>
+<div class="collapse" id="a${data[i].id}">details added here</div>
+</span>
+</div>
+</div>
+</div>
+`)
+            }
+        }
+    })
+}
 
- <script> 
 
-                $(document).ready(function () { 
+// --------------------------------- Search Function --------------------------------- //
+function searchCoins() {
+    $.ajax(
+        {
+            type: 'GET',
+            datatype: 'json',
+            url: "https://api.coingecko.com/api/v3/coins/" + searchInput.value,
+            success: function (data) {
+                searchCoin[0] = data
+                $(".searchResult").html($(`.${searchInput}`));
+                console.log(data)
+            },
+            error: function (error) {
+                console.log("error : ", error);
+            }
+        }
+    );
+}
 
-  
+// ---------------------------------More info function --------------------------------- //
+function moreInfo(id) {
+    $.ajax({
+        url: "https://api.coingecko.com/api/v3/coins/" + id,
+        dataType: "json",
+        success: function (data) {
+            $(".card").append(`
+<div class="card-body">
+<div><img src=${data.image.small}/>
+<p>Price List:</p>
+<ul>
+<li>${data.market_data.current_price.usd} $</li>
+<li>${data.market_data.current_price.eur} €</li>
+<li>${data.market_data.current_price.ils} ₪</li>
+</ul>
+</div>
+`)
+        }
+    })
+}</script>
+</body>
 
-                    // FETCHING DATA FROM JSON FILE 
-
-                    $.getJSON("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=idr&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true",  
-
-                            function (data) { 
-
-                        var student = ''; 
-
-  
-
-                        // ITERATING THROUGH OBJECTS 
-
-                        $.each(data, function (key, value) { 
-
-  
-
-                            //CONSTRUCTION OF ROWS HAVING 
-
-                            // DATA FROM JSON OBJECT 
-
-                            student += '<tr>'; 
-
-                            student += '<td>' +  
-
-                                value.idr + '</td>'; 
-
-  
-
-                            student += '<td>' +  
-
-                                value.idr_market_cap + '</td>'; 
-
-  
-
-                            student += '<td>' +  
-
-                                value.TotalScore + '</td>'; 
-
-  
-
-                            student += '<td>' +  
-
-                                value.Articles + '</td>'; 
-
-  
-
-                            student += '</tr>'; 
-
-                        }); 
-
-                          
-
-                        //INSERTING ROWS INTO TABLE  
-
-                        $('#table').append(student); 
-
-                    }); 
-
-                }); 
-
-            </script> 
-
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</html>
