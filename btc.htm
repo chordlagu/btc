@@ -1,101 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>Bitcoin Price Index Watcher in HTML5</title>
+<style type="text/css">
+  #data {
+    width: 400px;
+    border: 1px dashed black;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 10px;
+  }
 
+  #logo {
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+    margin-top: 50px;
+    display: block;
+  }
+</style>
 </head>
-
 <body>
-    <div class="container-fluid" id="container">
-        <div>
-            <form class="form-inline">
-                <input class="form-control" type="search" placeholder="Type something.." aria-label="Search"
-                    id="searchInput">
-                <button class="btn btn-success" type="button" id="searchButton" onclick="searchCoins()">Search</button>
-            </form>
-        </div>
-        <div class="card-columns">
-            <div class="coins" id="coinsLoad"></div>
-        </div>
-    </div>
+  <img id="logo" src="https://www.ssaurel.com/cryptocoins/screenshots/web_hi_res_512.png" />
+  <div id="data" />
+  <script type="text/javascript">
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://api.coindesk.com/v1/bpi/currentprice.json";
 
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4  &&  this.status == 200) {
+        var json = JSON.parse(this.responseText);
+        parseJson(json);
+      }		
+    };
 
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
 
-<script>
-// -------- Show all the coins onload -------- //
-$(document).ready(showAllCoins());
+    function parseJson(json) {
+      var time = "<b>Last Updated : " + json["time"]["updated"] + "</b>";
+      var usdValue = "1 BTC equals to $" + json["bpi"]["USD"]["rate"];
+      var gbpValue = "1 BTC equals to &pound;" + json["bpi"]["GBP"]["rate"];
+      var euroValue = "1 BTC equals to &euro;" + json["bpi"]["EUR"]["rate"];
 
-// --------------------------------- Show all fonts onload function --------------------------------- //
-function showAllCoins() {
-    $.ajax({
-        url: "https://api.coingecko.com/api/v3/coins/list",
-        dataType: "json",
-        success: function (data) {
-            // console.log(data);
-            for (let i = 0; i < 100; i++) {
-                $(".coins").append(`
-<div class="card">
-<div class="card-body">
-<span>
-<p id="coin-sym"><strong>symbol:</strong> ${data[i].symbol}<br>
-<strong>name:</strong> ${data[i].name}</p>
-<button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#${data[i].id}" onClick="moreInfo('${data[i].id}')">More Info</button>
-<div class="collapse" id="a${data[i].id}">details added here</div>
-</span>
-</div>
-</div>
-</div>
-`)
-            }
-        }
-    })
+      document.getElementById("data").innerHTML = time + 
+	       "<br /><br />" + usdValue + 
+		   "<br />" + gbpValue + 
+		   "<br />" + euroValue;
 }
-
-
-// --------------------------------- Search Function --------------------------------- //
-function searchCoins() {
-    $.ajax(
-        {
-            type: 'GET',
-            datatype: 'json',
-            url: "https://api.coingecko.com/api/v3/coins/" + searchInput.value,
-            success: function (data) {
-                searchCoin[0] = data
-                $(".searchResult").html($(`.${searchInput}`));
-                console.log(data)
-            },
-            error: function (error) {
-                console.log("error : ", error);
-            }
-        }
-    );
-}
-
-// ---------------------------------More info function --------------------------------- //
-function moreInfo(id) {
-    $.ajax({
-        url: "https://api.coingecko.com/api/v3/coins/" + id,
-        dataType: "json",
-        success: function (data) {
-            $(".card").append(`
-<div class="card-body">
-<div><img src=${data.image.small}/>
-<p>Price List:</p>
-<ul>
-<li>${data.market_data.current_price.usd} $</li>
-<li>${data.market_data.current_price.eur} €</li>
-<li>${data.market_data.current_price.ils} ₪</li>
-</ul>
-</div>
-`)
-        }
-    })
-}</script>
+</script>
 </body>
-
 </html>
